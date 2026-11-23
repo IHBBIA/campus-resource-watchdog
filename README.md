@@ -19,12 +19,12 @@ A self-hosted, multi-node virtualized Linux infrastructure hosting a live campus
 
 * **Two-Node Fault Isolation:** Decouples monitoring (`VM2-Monitor`) from the web host (`VM1-Server`) so alerts fire even when the primary server goes down.
 * **Least-Privilege Security (UFW):** Blocks all unsolicited inbound connections by default, permitting only `22/tcp` (SSH) and `80/tcp` (HTTP).
-* **Human-Centered Alert Design:** Translates raw connection errors into plain-English Telegram alerts specifying **Student Impact** and **Recovery Commands**, using boolean state-tracking (`server_is_up`) to prevent alert spam.
+* **Human-Centered Alert Design:** Translates raw connection errors into plain-English Telegram alerts specifying **Easier Understanding** and **Recovery Commands**, using boolean state-tracking (`server_is_up`) to prevent alert spam.
 * **Purple Team Log Forensics:** Validated firewall filtering via `nmap -sV -Pn` from `VM3-Auditor` and verified real-time traffic attribution in `/var/log/nginx/access.log`.
 
 ---
 
-## 🏗️ Visual Architecture Diagram
+##  Visual Architecture Diagram
 
 ```mermaid
 flowchart LR
