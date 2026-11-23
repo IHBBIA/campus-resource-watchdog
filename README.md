@@ -1,10 +1,10 @@
-# 🛡️ Smart Campus Resource Hub & Three-Node Security Lab
+#  Smart Campus Resource Hub & Three-Node Security Lab
 
 A self-hosted, multi-node virtualized Linux infrastructure hosting a live campus facility availability portal (`Campus Resource Hub`) paired with an independent Python health-monitoring daemon, real-time Telegram incident alerts, and a Purple Team auditing node.
 
 ---
 
-## 🏗️ System Architecture & Topology
+##  System Architecture & Topology
 
 | Node | OS | IP Address | Role |
 | :--- | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ A self-hosted, multi-node virtualized Linux infrastructure hosting a live campus
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 * **Two-Node Fault Isolation:** Decouples monitoring (`VM2-Monitor`) from the web host (`VM1-Server`) so alerts fire even when the primary server goes down.
 * **Least-Privilege Security (UFW):** Blocks all unsolicited inbound connections by default, permitting only `22/tcp` (SSH) and `80/tcp` (HTTP).
@@ -24,7 +24,7 @@ A self-hosted, multi-node virtualized Linux infrastructure hosting a live campus
 
 ---
 
-## 📸 Visual Proof & Lab Validation
+##  Visual Proof & Lab Validation
 
 ### 1. Live Web Portal & Firewall Hardening
 ![Campus Portal](screenshots/02-campus-portal.png)
@@ -38,7 +38,7 @@ A self-hosted, multi-node virtualized Linux infrastructure hosting a live campus
 
 ---
 
-## 🧩 Engineering Challenges & Solutions
+##  Engineering Challenges & Solutions
 
 * **x86 vs. ARM64 Architecture:** Resolved VirtualBox Guru Meditation and EFI boot failures on Apple Silicon by migrating to native ARM64 images in UTM.
 * **VM Cloning Isolation:** Prevented IP collisions and hostname conflicts after cloning by regenerating virtual MAC addresses and updating `/etc/hostname` and `/etc/hosts`.
