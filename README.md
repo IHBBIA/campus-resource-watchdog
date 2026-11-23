@@ -24,6 +24,30 @@ A self-hosted, multi-node virtualized Linux infrastructure hosting a live campus
 
 ---
 
+## 🏗️ Visual Architecture Diagram
+
+```mermaid
+flowchart LR
+    subgraph Host["macOS Host (192.168.64.1)"]
+        Browser["Safari / Chrome<br/>(Admin & Client)"]
+    end
+
+    subgraph VirtualNet["UTM Virtual Network Bridge"]
+        VM1["VM1-Server (192.168.64.2)<br/>Ubuntu 24.04 ARM64<br/>- Nginx (:80)<br/>- UFW Default-Deny (:22, :80)<br/>- /var/log/nginx/access.log"]
+        VM2["VM2-Monitor (192.168.64.4)<br/>Ubuntu 24.04 ARM64<br/>- Python watchdog.py<br/>- State-Tracking Logic"]
+        VM3["VM3-Auditor (192.168.65.2)<br/>Kali Linux ARM64<br/>- Nmap (-sV -Pn)<br/>- Curl Header Audits"]
+    end
+
+    Telegram["Telegram Bot REST API<br/>(Mobile Incident Alerts)"]
+
+    Browser -- "HTTP GET (:80) / SSH (:22)" --> VM1
+    VM3 -- "Port Scan & Header Audit" --> VM1
+    VM2 -- "Health Poll Every 10s" --> VM1
+    VM2 -- "HTTPS POST /sendMessage<br/>(Outage & Resolved Alerts)" --> Telegram
+```
+
+---
+
 ##  Visual Proof & Lab Validation
 
 ### 1. Live Web Portal & Firewall Hardening
